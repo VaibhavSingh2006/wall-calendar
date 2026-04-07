@@ -1,0 +1,346 @@
+.notes-panel {
+  background: #fffdf0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.notepad-holes {
+  position: absolute;
+  left: 14px;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hole {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  border: 2px solid #d1d5db;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
+  flex-shrink: 0;
+}
+
+.notepad-header {
+  padding: 14px 16px 10px 40px;
+  border-bottom: 2px solid;
+  position: relative;
+  background: #fffdf0;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.notepad-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.notepad-emoji {
+  font-size: 1.3rem;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+}
+
+.notepad-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.notepad-title {
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: #9ca3af;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.notepad-subtitle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tape-strip {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+  width: 60px;
+  height: 18px;
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+.notepad-body {
+  flex: 1;
+  position: relative;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 27px,
+    #e9eef5 27px,
+    #e9eef5 28px
+  );
+  padding: 4px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
+.margin-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 44px;
+  width: 1px;
+  border-left: 1.5px solid;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.notepad-textarea {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  min-height: 200px;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 0.88rem;
+  color: #374151;
+  line-height: 28px;
+  padding: 4px 12px 4px 52px;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 0.2px;
+  display: block;
+}
+
+.notepad-textarea::placeholder {
+  color: #d1d5db;
+  font-style: italic;
+  font-size: 0.82rem;
+}
+
+.notepad-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px 12px 40px;
+  background: #fffdf0;
+  border-top: 1px dashed #e5e7eb;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.char-count {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+
+.notes-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-clear {
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-weight: 600;
+}
+
+.btn-clear:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+
+.btn-save {
+  padding: 5px 14px;
+  font-size: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.btn-save:hover { opacity: 0.85; transform: scale(1.03); }
+.btn-saved { background: #16a34a !important; }
+
+.notes-toggle-btn {
+  position: absolute;
+  top: 16px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 20px 0 0 20px;
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: -3px 3px 12px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+  z-index: 100;
+  letter-spacing: 0.4px;
+}
+
+.notes-toggle-btn:hover {
+  transform: translateX(-3px);
+  box-shadow: -5px 4px 16px rgba(0,0,0,0.25);
+}
+
+.notes-toggle-icon { font-size: 0.9rem; }
+
+.notes-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.2);
+  z-index: 150;
+  border-radius: 20px;
+  animation: fadeInBackdrop 0.25s ease;
+  backdrop-filter: blur(2px);
+}
+
+@keyframes fadeInBackdrop {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.notes-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background: #fffdf0;
+  box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+  border-radius: 0 20px 20px 0;
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.notes-drawer-open {
+  transform: translateX(0%);
+}
+
+.notes-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.notes-close-btn {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.notes-close-btn:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+.notes-drawer.dark-notes,
+.notes-panel.dark-notes {
+  background: #1f2937;
+}
+
+.dark-notes .notepad-header {
+  background: #1f2937;
+}
+
+.dark-notes .notepad-title {
+  color: #6b7280;
+}
+
+.dark-notes .notepad-textarea {
+  color: #e5e7eb;
+}
+
+.dark-notes .notepad-body {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 27px,
+    #374151 27px,
+    #374151 28px
+  );
+}
+
+.dark-notes .notepad-footer {
+  background: #1f2937;
+  border-top-color: #374151;
+}
+
+.dark-notes .btn-clear {
+  background: #374151;
+  border-color: #4b5563;
+  color: #9ca3af;
+}
+
+.dark-notes .hole {
+  background: #374151;
+  border-color: #4b5563;
+}
+
+@media (max-width: 600px) {
+  .notes-drawer {
+    width: 88vw;
+    border-radius: 16px 0 0 16px;
+  }
+
+  .notes-toggle-btn {
+    top: 12px;
+    font-size: 0.72rem;
+    padding: 7px 12px;
+  }
+}
